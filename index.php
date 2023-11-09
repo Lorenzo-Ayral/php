@@ -52,6 +52,15 @@ class Fraction
     {
         return "[$this->numerator / $this->denominator]\n";
     }
+
+    function pgcd(int $a, int $b)
+    {
+        if($b ==0) {
+            return $a;
+        }
+        return $this->pgcd($b, $a % $b);
+    }
+    
 }
 
 $tiers = new Fraction(1, 3);
