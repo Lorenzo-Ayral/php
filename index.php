@@ -10,6 +10,7 @@ class Fraction
     {
         $this->setNumerator($num);
         $this->setDenominator($den);
+        $this->simplifier();
     }
 
     function division()
@@ -53,12 +54,12 @@ class Fraction
         return "[$this->numerator / $this->denominator]\n";
     }
 
-    function pgcd(int $a, int $b)
+    public static function pgcd(int $a, int $b)
     {
         if($b ==0) {
             return $a;
         }
-        return $this->pgcd($b, $a % $b);
+        return self::pgcd($b, $a % $b);
     }
 
     function simplifier()
@@ -77,3 +78,5 @@ $fraction = new Fraction(462, 1071);
 echo $fraction;
 $fraction->simplifier();
 echo $fraction;
+
+echo Fraction::pgcd(8, 12);
