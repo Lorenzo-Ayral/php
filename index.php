@@ -60,14 +60,20 @@ class Fraction
         }
         return $this->pgcd($b, $a % $b);
     }
-    
+
+    function simplifier()
+    {
+        $a = $this->numerator;
+        $b = $this->denominator;
+
+        $pgcd = $this->pgcd($a, $b);
+
+        $this->numerator = $this->numerator / $pgcd;
+        $this->denominator = $this->denominator / $pgcd;
+    }
 }
 
-$tiers = new Fraction(1, 3);
-$quart = new Fraction(1, 4);
-
-$fraction = $tiers->addition($quart);
-
-echo $tiers;
-echo $quart;
+$fraction = new Fraction(462, 1071);
+echo $fraction;
+$fraction->simplifier();
 echo $fraction;
