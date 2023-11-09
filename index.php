@@ -8,8 +8,8 @@ class Fraction
     // Méthode magique (__)
     function __construct(int $num, int $den)
     {
-        $this->numerator = $num;
-        $this->denominator = $den;
+        $this->setNumerator($num);
+        $this->setDenominator($den);
     }
 
     function division()
@@ -40,10 +40,25 @@ class Fraction
         return $this->numerator;
     }
 
+    function addition(Fraction $fraction)
+    {
+        $num = $this->numerator * $fraction->getDenominator() + $fraction->getNumerator() * $this->denominator;
+        $den = $this->denominator * $fraction->getDenominator();
+
+        return new Fraction($num, $den);
+    }
+
+    function __toString()
+    {
+        return "[$this->numerator / $this->denominator]\n";
+    }
 }
 
 $tiers = new Fraction(1, 3);
+$quart = new Fraction(1, 4);
 
-$tiers->setDenominator(0);
+$fraction = $tiers->addition($quart);
 
-echo $tiers->division();
+echo $tiers;
+echo $quart;
+echo $fraction;
